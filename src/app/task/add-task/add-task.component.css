@@ -1,0 +1,21 @@
+mat-card{
+  width:80%;
+  margin: auto;
+}
+
+mat-form-field{
+  margin: auto 5px ;
+}
+
+.taskinput{
+  width:50%;
+}
+
+.taskcategory{
+  min-width: 30px;
+  max-width: 150px;
+}
+
+.taskbutton{
+  margin: auto 5px;
+}

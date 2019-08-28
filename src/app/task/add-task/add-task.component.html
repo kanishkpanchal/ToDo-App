@@ -1,0 +1,19 @@
+<mat-card>
+  <form (submit)="OnAddTask(taskForm)" #taskForm="ngForm">
+  <mat-form-field class="taskinput">
+    <input matInput name="tasktitle" placeholder="Add your Task Here!" ngModel #tasktitle="ngModel" required>
+    <mat-error *ngIf="tasktitle.invalid">You're Missing Task!</mat-error>
+  </mat-form-field>
+
+  <mat-form-field class="taskcategory">
+    <select matNativeControl name="taskcategory" placeholder="Category" ngModel #taskcategory="ngModel" required>
+      <option></option>
+      <option value="work">Work</option>
+      <option value="home">Home</option>
+      <option value="personal">Personal</option>
+    </select>
+    <mat-error *ngIf="taskcategory.invalid">Please Enter Category</mat-error>
+  </mat-form-field>
+  <button class="taskbutton" mat-raised-button color="accent" type="submit">ADD</button>
+</form>
+</mat-card>

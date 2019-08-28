@@ -1,0 +1,28 @@
+<!--<mat-accordion>
+  <mat-expansion-panel multi="true" *ngFor="let task of tasks">
+    <mat-expansion-panel-header>
+        {{ task.title }}
+    </mat-expansion-panel-header>
+      <p>  {{ task.category }}</p>
+    <mat-action-row class="">
+        <button mat-button class="done-button">DONE</button>
+        <button mat-button color="warn">DELETE</button>
+      </mat-action-row>
+  </mat-expansion-panel>
+</mat-accordion>-->
+
+<div *ngIf="tasks.length>0">
+<mat-card *ngFor="let task of tasks">
+  <div class="mat-card-title">
+      <mat-checkbox class="mat-checkbox"  (click)="updateStatus(task)" [checked]='task.status' color="primary" ></mat-checkbox>
+    {{ task.title }}
+  </div>
+  <div class="mat-card-category">
+    {{ task.category }}
+  </div>
+  <div class="action">
+      <button mat-button color="warn" (click)="OnDelete(task.id)">DELETE</button>
+  </div>
+</mat-card>
+</div>
+<p class=" mat-body-1" *ngIf="tasks.length<=0">No Tasks Added Yet</p>
