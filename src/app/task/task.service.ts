@@ -6,7 +6,7 @@ import { map } from 'rxjs/operators';
 
 @Injectable({providedIn: 'root'})
 export class TasksService {
-  private tasks: any = [];
+  private tasks: Task[] = [];
   private tasksUpdate = new Subject<Task[]>();
 
   constructor(private http: HttpClient) {}
