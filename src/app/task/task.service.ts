@@ -6,7 +6,7 @@ import { map } from 'rxjs/operators';
 
 @Injectable({providedIn: 'root'})
 export class TasksService {
-  private tasks: Task[] = [];
+  private tasks: any = [];
   private tasksUpdate = new Subject<Task[]>();
 
   constructor(private http: HttpClient) {}
@@ -62,14 +62,10 @@ export class TasksService {
       category: taskr.category,
       status: taskr.status
     };
-    this.http.put('http://localhost:3000/api/tasks/' + task.id, task)
+    this.http.put<{message: string}>('http://localhost:3000/api/tasks/' + task.id, task)
     .subscribe((responseData) => {
-      console.log(responseData);
-      /*
-        const updatedTasks = responseData.status;
-        this.tasks = updatedTasks;
-        this.tasksUpdate.next([...this.tasks]);
-      */
+      console.log(responseData.message);
+      this.getTasks();
     });
   }
 }

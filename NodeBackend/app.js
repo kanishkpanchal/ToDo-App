@@ -70,9 +70,9 @@ app.put("/api/tasks/:id", (req,res,next) => {
   });
   var newvalues = { $set: {status: task.status} };
   Task.updateOne({ _id: req.params.id}, newvalues ).then(result => {
+    console.log(result);
     res.status(200).json({
-      message: 'Task Status Updated!',
-      status: result.status
+      message: 'Task Status Updated!'
     });
   });
 });
