@@ -10,10 +10,7 @@ import { TasksService } from '../task.service';
 })
 export class AddTaskComponent implements OnInit {
 
-
-
   OnAddTask( form: NgForm ) {
-
     if (form.invalid) {
       return;
     }

@@ -42,7 +42,6 @@ app.post("/api/tasks/", (req,res,next) =>{
       taskId: result._id
     });
   });
-
 });
 
 app.get('/api/tasks',(req,res,next) => {
@@ -63,12 +62,15 @@ app.delete("/api/tasks/:id", (req, res, next) => {
 });
 
 app.put("/api/tasks/:id", (req,res,next) => {
+
+  var a = new Date();
   const task = new Task({
     title: req.body.title,
     category: req.body.category,
-    status: req.body.status
+    status: req.body.status,
+    date: a
   });
-  var newvalues = { $set: {status: task.status} };
+  var newvalues = { $set: {status: task.status, date: a} };
   Task.updateOne({ _id: req.params.id}, newvalues ).then(result => {
     console.log(result);
     res.status(200).json({

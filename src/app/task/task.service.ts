@@ -11,6 +11,18 @@ export class TasksService {
 
   constructor(private http: HttpClient) {}
 
+  addTask(title: string, category: string) {
+    const task: Task = {id: null, title: title, category: category, status: false};
+    this.http.post<{message: string, taskId: string}>('http://localhost:3000/api/tasks', task)
+    .subscribe((responseData) => {
+      console.log(responseData.message);
+      const tid = responseData.taskId;
+      task.id = tid;
+      this.tasks.push(task);
+      this.tasksUpdate.next([...this.tasks]);
+    });
+  }
+
   getTasks() {
     this.http.get<{message: string, tasks: any}>(
       'http://localhost:3000/api/tasks'
@@ -25,26 +37,14 @@ export class TasksService {
         };
       });
     }))
-    .subscribe((trasnformedTasks) => {
-      this.tasks = trasnformedTasks;
+    .subscribe((transformedTasks) => {
+      this.tasks = transformedTasks;
       this.tasksUpdate.next([...this.tasks]);
     });
   }
 
   getTaskUpdateListen() {
     return this.tasksUpdate.asObservable();
-  }
-
-  addTask(title: string, category: string) {
-    const task: Task = {id: null, title: title, category: category, status: false};
-    this.http.post<{message: string, taskId: string}>('http://localhost:3000/api/tasks', task)
-    .subscribe((responseData) => {
-      console.log(responseData.message);
-      const tid = responseData.taskId;
-      task.id = tid;
-      this.tasks.push(task);
-      this.tasksUpdate.next([...this.tasks]);
-    });
   }
 
   deleteTask(taskId: string) {

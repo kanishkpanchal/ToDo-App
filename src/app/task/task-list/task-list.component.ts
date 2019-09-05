@@ -11,7 +11,7 @@ import { TasksService } from '../task.service';
 })
 export class TaskListComponent implements OnInit, OnDestroy {
 
-   tasks: Task[] = [];
+  tasks: Task[] = [];
   private tasksSub: Subscription;
 
   constructor(public tasksService: TasksService) {

@@ -9,9 +9,4 @@ import { Task } from './task/task.model';
 export class AppComponent {
   title = 'ToDo-app';
 
-  storedTasks: Task[] = [];
-
-  onTaskAdded(task) {
-    this.storedTasks.push(task);
-  }
 }
